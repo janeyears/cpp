@@ -3,6 +3,7 @@
 
 #include <iomanip>
 #include <iostream>
+#include <limits>
 
 class Contact {
 	private:
