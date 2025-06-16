@@ -60,7 +60,6 @@ void Phonebook::addContact() {
 		contactCount++;
 	index = (index + 1) % 8;
 	std::cout << "Contact added successfully! Returning to the main menu." << std::endl;
-
 }
 
 void Phonebook::startSearch() {
@@ -68,7 +67,7 @@ void Phonebook::startSearch() {
 	std::cout << "============================================" << std::endl;
 	std::cout << "              📞 MY C++ PHONEBOOK           " << std::endl;
 	std::cout << "============================================" << std::endl;
-	std::cout << "|     INDEX|FIRST NAME| LAST NAME| NICKNAME|" << std::endl;
+	std::cout << "|     INDEX|FIRST NAME| LAST NAME|  NICKNAME|" << std::endl;
 	for (int i = 0; i < this->contactCount; i++) {
 		std::cout << "|" << std::setw(10) << i << "|";
 		std::cout << std::setw(10) << contacts[i].getShortFirstName() << "|";
@@ -77,11 +76,17 @@ void Phonebook::startSearch() {
 	}
 	std::cout << "============================================" << std::endl;
 	std::cout << "Enter index of the contact to view details: ";
-	std::cin >> selectedIndex;
-	std::cin.ignore();
+
+	if (!(std::cin >> selectedIndex)) {
+		std::cout << "Invalid input (not an integer). Returning to main menu." << std::endl;
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // flush the input buffer
+		return;
+	}
+	std::cin.ignore(); // discard leftover newline
 	if (selectedIndex < 0 || selectedIndex >= this->contactCount) {
-		std::cout << "Invalid index. Returning to a main menu" << std::endl;
-		return ;
+		std::cout << "Invalid index. Returning to main menu." << std::endl;
+		return;
 	}
 	else {
 		std::cout << "Contact details:" << std::endl;
