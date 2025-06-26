@@ -1,10 +1,9 @@
-
-NAME =  SedIsForLosers
+NAME =  Harl2.0
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp 
-
+SRCS = main.cpp \
+	   Harl.cpp
 OBJ = $(SRCS:.cpp=.o)
 
 all: $(NAME)
