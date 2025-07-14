@@ -1,10 +1,11 @@
-NAME = SerenaMyLove!
+NAME =  RepetitiveWork
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++11
 
 SRCS = main.cpp \
 	   ClapTrap.cpp \
-	   ScavTrap.cpp
+	   ScavTrap.cpp \
+	   FragTrap.cpp
 OBJ = $(SRCS:.cpp=.o)
 
 all: $(NAME)

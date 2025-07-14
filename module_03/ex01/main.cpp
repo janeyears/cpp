@@ -1,15 +1,19 @@
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
-int main(){
-	ClapTrap ct1;
-	ClapTrap ct2("Robert");
+int main() {
+	std::cout << "Creating ScavTrap" << std::endl;
+	ScavTrap scav1("SC4V-TP");
 
-	ct1.attack("Skag");
-	ct2.takeDamage(5);
-	ct2.takeDamage(4);
-	ct2.beRepaired(3);
-	ct1.takeDamage(10);
-	ct1.attack("Skag");
-	ct1.beRepaired(10);
-	return 1;
-}
+	scav1.attack("Skag");
+	scav1.guardGate();
+
+	std::cout << "\nTesting copy constructor" << std::endl;
+	ScavTrap scav3(scav1);
+
+	std::cout << "\nTesting copy assignment" << std::endl;
+	ScavTrap scav4;
+	scav4 = scav1;
+
+	std::cout << "\nNow destroy all of them" << std::endl;
+	return 0;
+	}

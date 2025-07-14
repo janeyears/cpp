@@ -1,10 +1,13 @@
-NAME = SerenaMyLove!
+NAME = Polymorphism
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++11
 
 SRCS = main.cpp \
-	   ClapTrap.cpp \
-	   ScavTrap.cpp
+	   Animal.cpp \
+	   Cat.cpp \
+	   Dog.cpp \
+	   WrongAnimal.cpp \
+	   WrongCat.cpp
 OBJ = $(SRCS:.cpp=.o)
 
 all: $(NAME)

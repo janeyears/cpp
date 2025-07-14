@@ -12,8 +12,9 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _energy(10), _health(10), _d
 	std::cout << "ClapTrap " << name << " constructed!" << std::endl;
 }
 
-ClapTrap::ClapTrap(const ClapTrap &other) {
-	*this = other;
+ClapTrap::ClapTrap(const ClapTrap &other)
+	: _name(other._name), _energy(other._energy),
+	  _health(other._health), _damage(other._damage) {
 	std::cout << "ClapTrap " << _name << " copy constructed!" << std::endl;
 }
 
