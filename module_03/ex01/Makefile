@@ -3,14 +3,18 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++11
 
 SRCS = main.cpp \
-	   ClapTrap.cpp \
-	   ScavTrap.cpp
+		ClapTrap.cpp \
+		ScavTrap.cpp
+
 OBJ = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+
+HEADERS = ClapTrap.hpp \
+			ScavTrap.hpp
 
 clean:
 	@rm -f $(OBJ)

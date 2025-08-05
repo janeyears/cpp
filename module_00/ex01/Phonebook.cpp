@@ -79,7 +79,7 @@ void Phonebook::startSearch() {
 
 	if (!(std::cin >> selectedIndex)) {
 		std::cout << "Invalid input (not an integer). Returning to main menu." << std::endl;
-		std::cin.clear();
+		std::cin.clear(); // clears the error flag from cin
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // flush the input buffer
 		return;
 	}

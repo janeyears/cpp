@@ -2,10 +2,7 @@
 #include "Contact.hpp"
 #include "Phonebook.hpp"
 
-// FIX UNRELEVANT INPUT TO INDEX SEARCH 
-// ADD COLOURS
-
-void printPhoneBookCover() {
+void printPhoneBookCover(void) {
 	std::cout << "======================================" << std::endl;
 	std::cout << "         📞 MY C++ PHONEBOOK       " << std::endl;
 	std::cout << "======================================" << std::endl;
@@ -14,7 +11,7 @@ void printPhoneBookCover() {
 	std::cout << "--------------------------------------" << std::endl;
 }
 
-int main() {
+int main(void) {
 
 	Phonebook	phonebook;
 	std::string	command;
@@ -39,4 +36,5 @@ int main() {
 		} else
 			std::cout << "Invalid command. Please try again." << std::endl;
 	}
+	return 0;
 }

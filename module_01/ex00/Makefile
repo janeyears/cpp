@@ -6,12 +6,18 @@ SRCS = Zombie.cpp \
 		newZombie.cpp \
 		randomChump.cpp \
 		main.cpp
+
+HEADERS = Zombie.hpp
+
 OBJ = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+
+%.o: %.cpp $(HEADERS)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -f $(OBJ)

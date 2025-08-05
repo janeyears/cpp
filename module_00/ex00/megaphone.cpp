@@ -13,8 +13,8 @@ int main(int ac, char** av) {
 	while (i < ac) 
 	{
 		std::string input = av[i];
-		for (char& ch : input) 
-			std::cout << static_cast<char>(std::toupper(static_cast<unsigned char>(ch)));
+		for (char& c : input) 
+			std::cout << static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
 		i++;	
 	}
 	std::cout << std::endl;

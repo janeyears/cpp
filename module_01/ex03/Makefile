@@ -3,16 +3,23 @@ CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS = main.cpp \
-	   HumanA.cpp \
-	   HumanB.cpp \
-	   Weapon.cpp
+		HumanA.cpp \
+		HumanB.cpp \
+		Weapon.cpp
 
 OBJ = $(SRCS:.cpp=.o)
+
+HEADERS =  HumanA.hpp \
+			HumanB.hpp \
+			Weapon.hpp
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+
+%.o: %.cpp $(HEADERS)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -f $(OBJ)

@@ -7,10 +7,15 @@ SRCS = Zombie.cpp \
 		main.cpp
 OBJ = $(SRCS:.cpp=.o)
 
+HEADERS = Zombie.hpp
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+
+%.o: %.cpp $(HEADERS)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -f $(OBJ)
