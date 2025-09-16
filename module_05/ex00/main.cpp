@@ -1,5 +1,5 @@
-	#include <iostream>
-	#include "Bureaucrat.hpp"
+#include <iostream>
+#include "Bureaucrat.hpp"
 
 int main() {
 	// ----- Test 1: valid Bureaucrat -----
@@ -29,9 +29,9 @@ int main() {
 	// ----- Test 4: decrementing grade -----
 
 	Bureaucrat b4("Alex", 149);
-	b4.decrementGrade();
-	std::cout << b4 << std::endl;
 	try {
+		b4.decrementGrade();
+		std::cout << b4 << std::endl;
 		b4.decrementGrade();
 	}
 	catch (const Bureaucrat::GradeTooLowException &e) {
@@ -40,13 +40,13 @@ int main() {
 	// ----- Test 5: incrementing grade -----
 
 	Bureaucrat b5("Megan", 2);
-	b5.incrementGrade();
-	std::cout << b5 << std::endl;
 	try {
+		b5.incrementGrade();
+		std::cout << b5 << std::endl;
 		b5.incrementGrade();
 	}
 	catch (const Bureaucrat::GradeTooHighException &e) {
 		std::cerr << "Exception caught: " << e.what() << std::endl;
 	}
 	return 0;
-	}
+}
