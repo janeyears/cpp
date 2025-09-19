@@ -17,11 +17,15 @@ int main() {
 			std::cout << jane << std::endl;
 			std::cout << anton << std::endl;
 
+		// ----- Test 1: ShrubberyCreationForm -----
+
 			std::cout << "\nSHRUBS" << std::endl;
 			ShrubberyCreationForm shrub("garden");
 			jane.signForm(shrub);
 			jane.executeForm(shrub);
 			axel.executeForm(shrub);
+			
+		// ----- Test 2: RobotomyRequestForm -----
 
 			std::cout << "\nROBOTOMY" << std::endl;
 			RobotomyRequestForm robot("Bender");
@@ -29,12 +33,15 @@ int main() {
 			for (int i = 0; i < 5; i++) {
 				axel.executeForm(robot);
 			}
+		// ----- Test 3: PresidentialPardonForm -----
 
 			std::cout << "\nPARDON" << std::endl;
 			PresidentialPardonForm pardon("Ford Prefect");
 			axel.signForm(pardon);
 			axel.executeForm(pardon);
 
+		// ----- Test 4: Exceptions -----
+		
 			std::cout << "\nEXCEPTIONS" << std::endl;
 			ShrubberyCreationForm badForm("backyard");
 			anton.signForm(badForm);

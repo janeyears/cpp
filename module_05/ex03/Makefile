@@ -1,4 +1,4 @@
-NAME = NoYouNeedForm28B
+NAME =  AtLeastThisBeatsCoffeeMaking
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++11
 
@@ -7,7 +7,8 @@ SRCS = main.cpp \
 		AForm.cpp \
 		ShrubberyCreationForm.cpp \
 		RobotomyRequestForm.cpp \
-		PresidentialPardonForm.cpp 
+		PresidentialPardonForm.cpp \
+		Intern.cpp
 
 OBJ = $(SRCS:.cpp=.o)
 

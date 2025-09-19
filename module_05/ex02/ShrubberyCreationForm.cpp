@@ -1,5 +1,6 @@
 #include "ShrubberyCreationForm.hpp"
-#include <fstream> 
+#include <fstream>
+#include <cstring>
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
 	: AForm("ShrubberyCreationForm", 145, 137) {
@@ -29,7 +30,7 @@ void ShrubberyCreationForm::action() const {
 			<< "   |           |  \n";
 	}
 	else {
-		throw (std::runtime_error("Cannot open '" + _target + "_shrubbery': " + std::strerror(errno)));
+		throw (std::runtime_error("Cannot open '" + _target + "_shrubbery': " + strerror(errno)));
 	}
 	file.close();
 }
