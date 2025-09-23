@@ -24,7 +24,7 @@ int main() {
 
 		AForm* f1 = someRandomIntern.makeForm("ShrubberyCreationForm", "office");
 		AForm* f2 = someRandomIntern.makeForm("RobotomyRequestForm", "R2D2");
-		AForm* f3 = someRandomIntern.makeForm("PresidentialPardonForm", "Arthur Dent");
+		AForm* f3 = someRandomIntern.makeForm("PresidentialPardonForm", "Bob");
 		AForm* f4 = someRandomIntern.makeForm("UnknownForm", "nobody");
 
 		if (f1) {

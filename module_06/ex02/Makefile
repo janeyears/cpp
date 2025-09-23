@@ -1,9 +1,9 @@
-NAME = Conversion
+NAME = Identify
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++11
 
 SRCS = main.cpp \
-		ScalarConverter.cpp
+		Base.cpp
 
 OBJ = $(SRCS:.cpp=.o)
 

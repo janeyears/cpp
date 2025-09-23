@@ -1,9 +1,9 @@
-NAME = Conversion
+NAME = Serialization
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++11
 
 SRCS = main.cpp \
-		ScalarConverter.cpp
+		Serializer.cpp
 
 OBJ = $(SRCS:.cpp=.o)
 

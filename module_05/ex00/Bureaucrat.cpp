@@ -2,12 +2,12 @@
 
 const char	*Bureaucrat::GradeTooHighException::what( void ) const throw()
 {
-	return ("Exception: Grade too high!");
+	return ("Grade too high!");
 }
 
 const char	*Bureaucrat::GradeTooLowException::what( void ) const throw()
 {
-	return ("Exception: Grade too low!");
+	return ("Grade too low!");
 }
 
 
@@ -18,7 +18,6 @@ Bureaucrat::Bureaucrat(std::string name, int grade)
 		throw GradeTooLowException();
 	if (grade < 1)
 		throw GradeTooHighException();
-	std::cout << "Bureaucrat " << this->_name << " with grade " << this->_grade << " has been constructed" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) 
