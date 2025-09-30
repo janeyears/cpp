@@ -1,5 +1,7 @@
 #include "ScalarConverter.hpp"
 #include <iomanip>
+#include <limits>
+#include <cmath>
 
 
 ScalarConverter::ScalarConverter() {}
@@ -23,18 +25,18 @@ bool ScalarConverter::isIntLiteral(const std::string& s) {
 }
 
 bool ScalarConverter::isFloatLiteral(const std::string& s) {
-	return (s == "-inff" || s == "+inff" || s == "nanf" ||
+	return (s == "-inff" || s == "+inff" || s == "inff" || s == "nanf" ||
 		   (s.back() == 'f' && s.find('.') != std::string::npos));
 }
 
 bool ScalarConverter::isDoubleLiteral(const std::string& s) {
-	return (s == "-inf" || s == "+inf" || s == "nan" ||
+	return (s == "-inf" || s == "+inf" || s == "inf" || s == "nan" ||
 			(s.find('.') != std::string::npos));
 }
 
 bool ScalarConverter::isPseudoLiteral(const std::string& s) {
-	return (s == "-inff" || s == "+inff" || s == "nanf" ||
-			s == "-inf"  || s == "+inf"  || s == "nan");
+	return (s == "-inff" || s == "+inff" || s == "inff" || s == "nanf" ||
+			s == "-inf"  || s == "+inf"  || s == "inf" || s == "nan");
 }
 
 // --------------------
@@ -59,12 +61,10 @@ void ScalarConverter::printConversions(double d) {
 
 	// float
 	std::cout << "float: ";
-	if (std::isnan(d) || d < -std::numeric_limits<float>::max() || d > std::numeric_limits<float>::max()) {
+	if (std::isnan(d) || d < -std::numeric_limits<float>::max() || d > std::numeric_limits<float>::max())
 		std::cout << "impossible\n";
-	} else {
-		int precision = 6;
-		if (d == static_cast<int>(d))
-			precision = 1;
+	else {
+		int precision = (d == static_cast<int>(d)) ? 1 : 6;
 		std::cout << std::fixed << std::setprecision(precision)
 				<< static_cast<float>(d) << "f\n";
 	}
@@ -72,16 +72,15 @@ void ScalarConverter::printConversions(double d) {
 	// double
 	std::cout << "double: ";
 	{
-		int precision = 6;
-		if (d == static_cast<int>(d))
-			precision = 1;
+		int precision = (d == static_cast<int>(d)) ? 1 : 6;
 		std::cout << std::fixed << std::setprecision(precision) << d << "\n";
 	}
 }
 
+
 void ScalarConverter::printPseudo(const std::string& s) {
 	std::cout << "char: impossible\nint: impossible\n";
-	if (s == "nanf" || s == "+inff" || s == "-inff") {
+	if (s == "nanf" || s == "+inff" || s == "inff" || s == "-inff") {
 		std::cout << "float: " << s << "\n";
 		std::cout << "double: " << s.substr(0, s.size() - 1) << "\n";
 	} else {
@@ -101,30 +100,58 @@ void ScalarConverter::impossibleAll() {
 void ScalarConverter::convert(const std::string &literal) {
 	if (isCharLiteral(literal)) {
 		char c = literal[0];
-		printConversions(static_cast<double>(c));
+		double d = static_cast<double>(c);
+		printConversions(d);
 	}
 	else if (isIntLiteral(literal)) {
 		try {
-			int i = std::stoi(literal);
-			printConversions(static_cast<double>(i));
-		} catch (...) { impossibleAll(); }
+			long long val = std::stoll(literal); // bigger than int
+			double d = static_cast<double>(val);
+			printConversions(d);
+		} 
+		catch (const std::out_of_range&) {
+			// If it's too big for int, still try as double
+			try {
+				double d = std::stod(literal);
+				printConversions(d); // will print "int: impossible" inside
+			}
+			catch (...) {
+				impossibleAll();
+			}
+		}
+		catch (...) {
+			impossibleAll();
+		}
 	}
 	else if (isFloatLiteral(literal)) {
-		if (isPseudoLiteral(literal)) { printPseudo(literal); return; }
-		try {
-			float f = std::stof(literal);
-			printConversions(static_cast<double>(f));
-		} catch (...) { impossibleAll(); }
-	}
-	else if (isDoubleLiteral(literal)) {
-		if (isPseudoLiteral(literal)) { printPseudo(literal); return; }
+		if (isPseudoLiteral(literal)) { 
+			printPseudo(literal); 
+			return; 
+		}
 		try {
 			double d = std::stod(literal);
 			printConversions(d);
-		} catch (...) { impossibleAll(); }
+		} catch (...) { 
+			impossibleAll(); 
+		}
+	}
+	else if (isDoubleLiteral(literal)) {
+		if (isPseudoLiteral(literal)) { 
+			printPseudo(literal); 
+			return; 
+		}
+		try {
+			double d = std::stod(literal);
+			printConversions(d);
+		} catch (...) { 
+			impossibleAll();
+		}
 	}
 	else {
 		impossibleAll();
 	}
 }
 
+// inff = +inff
+// inf = +inf
+// check until float max and max double
