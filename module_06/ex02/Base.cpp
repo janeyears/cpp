@@ -1,6 +1,7 @@
 #include "Base.hpp"
 #include <iostream>
 
+
 Base* generate(void){
 	srand(time(NULL));
 	int r = rand() % 3;
@@ -18,7 +19,6 @@ Base* generate(void){
 void identify(Base *p)
 {
 	 if (!p) {
-		std::cout << "Null pointer\n";
 		return;
 	}
 	if (dynamic_cast<A*>(p))

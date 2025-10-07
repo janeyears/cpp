@@ -14,7 +14,7 @@ class Serializer {
 		static Data* deserialize(uintptr_t raw);
 	private:
 		Serializer();
-		Serializer(Serializer &other);
-		Serializer &operator=(Serializer &other);
+		Serializer(Serializer &other) = delete;
+		Serializer &operator=(Serializer &other) = delete;
 		~Serializer();
 };

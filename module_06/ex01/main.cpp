@@ -1,17 +1,25 @@
 #include "Serializer.hpp"
 
-int main(){
-	
-	int x = 123;
-	int* ptr = &x;
+int main() {
+	Data data;
+	data.value = 42;
+	data.name = "Evgeniia";
 
-	// Convert pointer → integer
-	uintptr_t raw = reinterpret_cast<uintptr_t>(ptr);
+	// serialize
+	uintptr_t raw = Serializer::serialize(&data);
+	std::cout << "Serialized value: " << raw << std::endl;
 
-	// Convert integer → pointer
-	int* newPtr = reinterpret_cast<int*>(raw);
+	// deserialize
+	Data* deserialized = Serializer::deserialize(raw);
 
-	std::cout << "Original pointer: " << ptr << "\n";
-	std::cout << "Raw integer: " << raw << "\n";
-	std::cout << "Restored pointer: " << newPtr << "\n";
+	std::cout << "Deserialized Data address: " << deserialized << std::endl;
+	std::cout << "Deserialized Data value: " << deserialized->value << std::endl;
+	std::cout << "Deserialized Data name: " << deserialized->name << std::endl;
+
+	if (deserialized == &data)
+		std::cout << "The data was correctly serialized and deserialized" << std::endl;
+	else
+		std::cout << "Error" << std::endl;
+
+	return 0;
 }

@@ -39,11 +39,7 @@ bool ScalarConverter::isPseudoLiteral(const std::string& s) {
 			s == "-inf"  || s == "+inf"  || s == "inf" || s == "nan");
 }
 
-// --------------------
-// Printers
-// --------------------
 void ScalarConverter::printConversions(double d) {
-	// char
 	std::cout << "char: ";
 	if (std::isnan(d) || d < std::numeric_limits<char>::min() || d > std::numeric_limits<char>::max())
 		std::cout << "impossible\n";
@@ -52,31 +48,39 @@ void ScalarConverter::printConversions(double d) {
 	else
 		std::cout << "'" << static_cast<char>(d) << "'\n";
 
-	// int
 	std::cout << "int: ";
 	if (std::isnan(d) || d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max())
 		std::cout << "impossible\n";
 	else
 		std::cout << static_cast<int>(d) << "\n";
 
-	// float
 	std::cout << "float: ";
 	if (std::isnan(d) || d < -std::numeric_limits<float>::max() || d > std::numeric_limits<float>::max())
 		std::cout << "impossible\n";
-	else {
-		int precision = (d == static_cast<int>(d)) ? 1 : 6;
+	else
+	{
+		int precision;
+		if (d == static_cast<int>(d))
+			precision = 1;
+		else
+			precision = 6;
+
 		std::cout << std::fixed << std::setprecision(precision)
 				<< static_cast<float>(d) << "f\n";
 	}
-
-	// double
 	std::cout << "double: ";
 	{
-		int precision = (d == static_cast<int>(d)) ? 1 : 6;
-		std::cout << std::fixed << std::setprecision(precision) << d << "\n";
-	}
-}
+		int precision;
+		if (d == static_cast<int>(d))
+			precision = 1;
+		else
+			precision = 6;
 
+		std::cout << std::fixed << std::setprecision(precision)
+				<< d << "\n";
+	}
+
+}
 
 void ScalarConverter::printPseudo(const std::string& s) {
 	std::cout << "char: impossible\nint: impossible\n";
@@ -96,7 +100,6 @@ void ScalarConverter::impossibleAll() {
 			  << "double: impossible\n";
 }
 
-
 void ScalarConverter::convert(const std::string &literal) {
 	if (isCharLiteral(literal)) {
 		char c = literal[0];
@@ -105,15 +108,15 @@ void ScalarConverter::convert(const std::string &literal) {
 	}
 	else if (isIntLiteral(literal)) {
 		try {
-			long long val = std::stoll(literal); // bigger than int
+			long long val = std::stoll(literal);
 			double d = static_cast<double>(val);
 			printConversions(d);
 		} 
 		catch (const std::out_of_range&) {
-			// If it's too big for int, still try as double
+			//still try as double
 			try {
 				double d = std::stod(literal);
-				printConversions(d); // will print "int: impossible" inside
+				printConversions(d);
 			}
 			catch (...) {
 				impossibleAll();
@@ -123,8 +126,10 @@ void ScalarConverter::convert(const std::string &literal) {
 			impossibleAll();
 		}
 	}
-	else if (isFloatLiteral(literal)) {
-		if (isPseudoLiteral(literal)) { 
+	else if (isFloatLiteral(literal))
+	{
+		if (isPseudoLiteral(literal))
+		{ 
 			printPseudo(literal); 
 			return; 
 		}
@@ -151,7 +156,3 @@ void ScalarConverter::convert(const std::string &literal) {
 		impossibleAll();
 	}
 }
-
-// inff = +inff
-// inf = +inf
-// check until float max and max double
