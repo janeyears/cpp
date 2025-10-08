@@ -21,6 +21,6 @@ void increment(T& element){
 }
 
 template<typename T>
-void print(T& element){
+void print_element(T& element){
 	std::cout << element << " ";
 }
