@@ -61,6 +61,7 @@
 	"files.associations": {
 		"*.ejs": "html",
 		"new": "cpp",
-		"string": "cpp"
+		"string": "cpp",
+		"iostream": "cpp"
 	}
 }
