@@ -1,5 +1,8 @@
 #pragma once
 #include <vector>
+#include <stdexcept>
+#include <cstddef>
+
 
 class Span {
 	public:

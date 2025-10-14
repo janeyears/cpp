@@ -2,8 +2,7 @@ NAME = MutantStack
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++11
 
-SRCS = main.cpp \
-		MutantStack.cpp
+SRCS = main.cpp 
 
 OBJ = $(SRCS:.cpp=.o)
 

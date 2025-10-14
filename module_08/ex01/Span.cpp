@@ -1,5 +1,7 @@
 #include "Span.hpp"
 #include <limits>
+#include <algorithm>
+
 
 Span::Span(unsigned int N) : _size(N) {
 	_container.reserve(N);

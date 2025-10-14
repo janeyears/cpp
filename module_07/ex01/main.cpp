@@ -18,4 +18,20 @@ int main(){
 	iter(arrayChar, 3, print_element<char>);
 	std::cout << std::endl;
 
+	std::cout << "\nTest for nullptr array\n";
+
+	try {
+		int* nullArray = nullptr;
+		iter(nullArray, 5, print_element<int>);
+	} catch (const std::exception& e) {
+		std::cerr << "Error: " << e.what() << "\n";
+	}
+	std::cout << "\nTest for zero  length\n";
+
+	try {
+		int arrayEmpty[] = {1, 2, 3};
+		iter(arrayEmpty, 0, print_element<int>);
+	} catch (const std::exception& e) {
+		std::cerr << "Error: " << e.what() << "\n";
+	}
 }
