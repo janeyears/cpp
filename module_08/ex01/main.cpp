@@ -21,15 +21,15 @@ int main()
 	try {
 		Span sp(10000);
 
-		// Example: fill from a std::vector<int>
+		// fill from vector
 		std::vector<int> numbers = {1, 2, 3, 4, 5};
 		sp.addRange(numbers.begin(), numbers.end());
 
-		// Example: fill from an array
+		// fill from an array
 		int arr[] = {10, 20, 30, 40};
 		sp.addRange(std::begin(arr), std::end(arr));
 
-		// Example: fill from a list
+		// fill from a list
 		std::list<int> lst = {100, 200, 300};
 		sp.addRange(lst.begin(), lst.end());
 

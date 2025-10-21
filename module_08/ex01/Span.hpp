@@ -18,6 +18,7 @@ class Span {
 		void addNumber(int value);
 		unsigned int shortestSpan();
 		unsigned int longestSpan();
+
 		template <typename InputIt>
 		void addRange(InputIt begin, InputIt end) {
 			size_t rangeSize = std::distance(begin, end);
