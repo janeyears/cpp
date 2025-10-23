@@ -1,6 +1,7 @@
 NAME = PmergeMe
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++11
+
+CXX = c++
+CXXFLAGS = -Wall -Wextra -Werror -std=c++11
 
 SRCS = main.cpp
 
@@ -9,7 +10,7 @@ OBJ = $(SRCS:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+	@$(CXX) $(CXXFLAGS) -o $(NAME) $(OBJ)
 
 clean:
 	@rm -f $(OBJ)
