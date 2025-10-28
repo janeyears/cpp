@@ -9,6 +9,18 @@ class PmergeMe {
 		std::vector<unsigned int>	_vector;
 		std::deque<unsigned int>	_deque;
 
+		// For vector sorting
+		std::vector<std::pair<unsigned int, unsigned int>> _pairsVector;
+		std::vector<unsigned int> _mainVector;
+		std::vector<unsigned int> _pendVector;
+		unsigned int _leftoverVector = 0;
+
+		// For deque sorting
+		std::deque<std::pair<unsigned int, unsigned int>> _pairsDeque;
+		std::deque<unsigned int> _mainDeque;
+		std::deque<unsigned int> _pendDeque;
+		unsigned int _leftoverDeque = 0;
+
 		double	timeV;
 		double	timeD;
 
@@ -30,6 +42,7 @@ class PmergeMe {
 		double	timeVector();
 		double	timeDeque();
 
+		void printBefore();
 		void printResults();
 
 
